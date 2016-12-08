@@ -2,6 +2,7 @@
     "project_name": "My Project",
     "pkg_name": "{{ cookiecutter.project_name|lower|replace(' ', '_') }}",
     "project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
+    "addon_name": "websauna.{{ cookiecutter.pkg_name }}",
     "project_description": "My awesome app.",
     "author": "Foo Bar",
     "email": "foo@bar.com",

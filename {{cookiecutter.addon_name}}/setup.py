@@ -14,12 +14,11 @@ with open(os.path.join(here, 'CHANGES.rst')) as f:
 if len(sys.argv) >= 2:
     if sys.argv[0] == "setup.py" and sys.argv[1] in ("install", "develop"):
         # Otherwise so much stuff would be broken later...
-        # Namely, namespaced packages clash as pip, setup.py and easy_install handle namespaces differently
         raise RuntimeError("It is not possible to install this package with setup.py. Use pip to install this package as instructed in Websauna tutorial.")
 
 
-setup(name='{{cookiecutter.project_name}}',
-      version='{{cookiecutter.version}}',
+setup(name='websauna.{{cookiecutter.pkg_name}}',
+      version='0.0',
       description='{{cookiecutter.project_description}}',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
@@ -35,9 +34,10 @@ setup(name='{{cookiecutter.project_name}}',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
-      test_suite='{{cookiecutter.pkg_name}}',
+      test_suite='websauna.{{cookiecutter.pkg_name}}',
       install_requires=['websauna'],
       extras_require={
+
         # Dependencies for running test suite
         'test': [
             "pytest",
@@ -50,7 +50,6 @@ setup(name='{{cookiecutter.project_name}}',
             "selenium==2.53.6",
         ],
 
-
         # Dependencies to make releases
         'dev': ['websauna[dev]'],
       },
@@ -58,6 +57,6 @@ setup(name='{{cookiecutter.project_name}}',
       # Define where this application starts as referred by WSGI web servers
       entry_points="""\
       [paste.app_factory]
-      main = {{cookiecutter.pkg_name}}:main
+      main = websauna.{{cookiecutter.pkg_name}}.demo:main
       """,
       )
